@@ -7,8 +7,8 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
 @Component({
   selector: 'app-blanklayer',
   imports: [ RouterOutlet, RouterLink, RouterLinkActive, NavbarComponent],
-  templateUrl: './Blanklayout.component.html',
-  styleUrl: './Blanklayout.component.scss'
+  templateUrl: './blanklayout.component.html',
+  styleUrl: './blanklayout.component.scss'
 })
 export class BlanklayoutComponent {
   constructor(private flowbiteService: FlowbiteService) {}

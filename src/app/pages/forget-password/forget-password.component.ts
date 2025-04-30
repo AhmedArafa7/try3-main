@@ -6,8 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-forget-Password',
   imports: [ReactiveFormsModule, RouterLink],
-  templateUrl: './forget-Password.component.html',
-  styleUrl: './forget-Password.component.scss'
+  templateUrl: './forget-password.component.html',
 })
 export class ForgetPasswordComponent {
   private readonly authService = inject(AuthService)
