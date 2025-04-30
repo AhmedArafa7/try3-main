@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20),
-        Validators.pattern(/^[a-zA-Z0-9]+$/)
+        Validators.pattern(/^[a-zA-Z0-9\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]+$/)
       ]]
     });
   }

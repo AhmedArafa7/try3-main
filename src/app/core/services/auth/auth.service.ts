@@ -41,10 +41,13 @@ export class AuthService {
   getUserData(): any {
     const token = this.getToken();
     if (token) {
-      return jwtDecode(token);
+      const decoded: any = jwtDecode(token);
+      this.userData = decoded;
+      return decoded;
     }
     return null;
   }
+  
 
   logout(): void {
     localStorage.removeItem('token');

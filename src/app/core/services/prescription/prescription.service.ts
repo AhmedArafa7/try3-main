@@ -13,12 +13,14 @@ export class PrescriptionService {
   constructor(private http: HttpClient) {}
 
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    if (token) {
-      return new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    } else {
-      return new HttpHeaders();
+    let headers = new HttpHeaders();
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token');
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
     }
+    return headers;
   }
 
   uploadPrescription(file: File): Observable<{ Message: string; PrescriptionId: number }> {

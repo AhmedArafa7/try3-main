@@ -32,7 +32,6 @@ export class HomeComponent {
   }
 
   detectMobileDevice(): boolean {
-    // الكشف إذا كان الجهاز موبايل أو لاب توب
     const userAgent = navigator.userAgent.toLowerCase();
     return /android|iphone|ipad|ipod|windows phone/i.test(userAgent);
   }
