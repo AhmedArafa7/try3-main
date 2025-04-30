@@ -1,0 +1,25 @@
+<div class="flex flex-col h-screen">
+  <!-- Navbar Section -->
+  <app-navbar></app-navbar>
+
+  <!-- Content Section -->
+  <div class="flex-grow bg-gray-100 pt-16 px-4 overflow-y-auto">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="w-full rounded-t-2xl bg-teal-600 flex justify-between px-[10%] py-3 fixed bottom-0 z-10">
+    <div class="text-center" role="button" routerLink="/home" routerLinkActive="text-white">
+      <i class="fa fa-home"></i>
+      <p>Home</p>
+    </div>
+    <div class="text-center" role="button" routerLink="/uploads" routerLinkActive="text-white">
+      <i class="fa-regular fa-rectangle-list"></i>
+      <p>Uploads</p>
+    </div>
+    <div class="text-center" role="button" routerLink="/settings" routerLinkActive="text-white">
+      <i class="fa-solid fa-gear"></i>
+      <p>Settings</p>
+    </div>
+  </div>
+</div>

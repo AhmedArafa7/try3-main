@@ -1,0 +1,75 @@
+<!-- Header -->
+<div class="text-4xl text-center text-white bg-teal-700 w-full font-bold py-6 shadow-md">
+  Login
+</div>
+
+<!-- Login Form Container -->
+<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+    <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Welcome Back</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+      <!-- Email Field -->
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input type="text" id="Email" formControlName="Email" 
+            class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            placeholder="Email Address">
+        </div>
+        @if (loginForm.get('Email')?.errors && loginForm.get('Email')?.touched) {
+          <div class="text-left text-sm text-red-600 bg-red-100 p-3 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (loginForm.get('Email')?.getError('required')) { <li>Email is required</li> }
+              @if (loginForm.get('Email')?.getError('Email')) { <li>a valid format like: <strong>name&#64;gmail.com</strong></li>}
+              
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- Password Field -->
+      <div>
+        <div class="relative">
+          <i class="fa-solid fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input type="Password" id="Password" formControlName="Password" 
+            class="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            placeholder="Password">
+        </div>
+        @if (loginForm.get('Password')?.errors && loginForm.get('Password')?.touched) {
+          <div class="text-left text-sm text-red-600 bg-red-100 p-3 rounded-md mt-2">
+            <ul class="list-disc pl-5">
+              @if (loginForm.get('Password')?.getError('required')) { <li>Password is required</li> }
+              @if (loginForm.get('Password')?.getError('minlength')) { <li>Password must be at least 6 characters</li> }
+              @if (loginForm.get('Password')?.getError('maxlength')) { <li>Password must be at most 20 characters</li> }
+              @if (loginForm.get('Password')?.getError('pattern')) { 
+                <li>Password must contain letters and numbers only</li> 
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="loginForm.invalid" 
+        class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl transition duration-200">
+        Login
+      </button>
+    </form>
+    
+    <!-- Links -->
+    <div class="mt-6 text-sm text-center space-y-2 text-gray-600">
+      <p>
+        <a routerLink="/forget-Password" class="text-teal-600 hover:underline">Forgot Password?</a>
+      </p>
+      <p>
+        Don't have an account? 
+        <a routerLink="/register" class="text-teal-600 hover:underline">Sign Up</a>
+      </p>
+      <p>
+        <a routerLink="/home" class="text-teal-600 hover:underline">Go to Homepage</a>
+      </p>
+    </div>
+  </div>
+</div>

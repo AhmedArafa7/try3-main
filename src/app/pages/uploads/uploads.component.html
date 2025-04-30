@@ -1,0 +1,44 @@
+<section class="pb-20 px-4">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Uploads</h2>
+  
+    @if (prescriptions.length > 0) {
+      @for (prescription of prescriptions; track prescription.id) {
+        <div class="flex flex-col md:flex-row justify-between items-center bg-white border border-gray-100 rounded-2xl w-full max-w-4xl m-auto mb-5 p-5 shadow-md hover:shadow-lg transition duration-200">
+          
+          <!-- صورة الروشتة -->
+          <div class="w-full md:w-1/4 mb-4 md:mb-0 flex justify-center">
+            <img [src]="prescription.imageUrl" alt="Prescription" class="w-28 h-28 object-cover rounded-lg border" />
+          </div>
+  
+          <!-- بيانات التحليل والتاريخ -->
+          <div class="flex-1 md:px-6 text-center md:text-left">
+            <p class="text-sm text-gray-500 mb-1">Uploaded on: <span class="font-medium text-gray-700">{{ prescription.uploadedAt | date:'medium' }}</span></p>
+            @if (prescription.analysisResult) {
+              <p class="text-sm text-gray-600 mb-2">Analysis: {{ prescription.analysisResult }}</p>
+            }
+            <button (click)="deletePrescription(prescription.id)" class="text-red-600 hover:underline text-sm">Delete Prescription</button>
+          </div>
+  
+          <!-- أيقونة + معلومات إضافية -->
+          <div class="hidden md:flex items-center gap-4">
+            <i class="fa-solid fa-file text-3xl text-green-600"></i>
+            <div>
+              <p class="font-medium text-gray-800">Prescription_123132.jpg</p>
+              <p class="text-gray-500 text-sm">Recognized: 2 Medicines</p>
+              <p class="text-gray-400 text-xs">2025-03-23 11:32:42</p>
+            </div>
+          </div>
+  
+          <!-- سهم -->
+          <div class="mt-4 md:mt-0 text-gray-400">
+            <i class="fa-solid fa-angle-right text-xl"></i>
+          </div>
+        </div>
+      }
+    } @else {
+      <div class="flex h-[50vh] justify-center items-center">
+        <p class="text-gray-400 text-lg">No recent uploads yet</p>
+      </div>
+    }
+  </section>
+  

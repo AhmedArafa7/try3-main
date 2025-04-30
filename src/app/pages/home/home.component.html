@@ -1,0 +1,51 @@
+<div class="max-w-2xl mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">
+    Welcome, {{ user?.FullName || 'User' }}
+  </h2>
+  <p class="text-gray-500 mb-6 text-center text-lg">
+    Did you know? Our AI can identify over <span class="font-semibold text-teal-600">1000 medications</span> with <span class="font-semibold text-teal-600">99% accuracy</span>!
+  </p>
+
+  <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">
+      Upload a Prescription Image
+    </h3>
+    <p class="text-gray-500 mb-6 text-center">
+      Select an image from your gallery or capture a new one
+    </p>
+
+    <div class="flex justify-center gap-4">
+      @if (isMobile) {
+        <button
+          (click)="cameraInput.click()"
+          class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-5 py-2.5 rounded-lg transition duration-200 shadow-sm"
+        >
+          Camera
+        </button>
+      }
+      
+      <button
+        (click)="galleryInput.click()"
+        class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-5 py-2.5 rounded-lg transition duration-200 shadow-sm"
+      >
+        Gallery
+      </button>
+    </div>
+
+    <input
+      type="file"
+      #cameraInput
+      accept="image/*"
+      capture="environment"
+      (change)="onFileSelected($event)"
+      class="hidden"
+    />
+    <input
+      type="file"
+      #galleryInput
+      accept="image/*"
+      (change)="onFileSelected($event)"
+      class="hidden"
+    />
+  </div>
+</div>
