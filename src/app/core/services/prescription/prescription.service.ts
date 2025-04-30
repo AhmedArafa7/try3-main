@@ -13,7 +13,7 @@ export class PrescriptionService {
   constructor(private http: HttpClient) {}
 
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('auth_token');
+    const token = localStorage.getItem('token');
     if (token) {
       return new HttpHeaders().set('Authorization', `Bearer ${token}`);
     } else {
@@ -22,21 +22,38 @@ export class PrescriptionService {
   }
 
   uploadPrescription(file: File): Observable<{ Message: string; PrescriptionId: number }> {
+    if (!file || file.size === 0) {
+      return throwError(() => new Error('No valid file selected'));
+    }
+  
     const formData = new FormData();
-    formData.append('Image', file); 
-
+    formData.append('Image', file);
+  
     const headers = this.getAuthHeaders();
     return this.http.post<{ Message: string; PrescriptionId: number }>(`${this.apiUrl}/upload`, formData, { headers })
       .pipe(
         catchError((err) => {
           let errorMessage = 'Failed to upload prescription';
-          if (err.error && err.error.message) {
-            errorMessage = err.error.message;
+      
+          if (err.error) {
+            if (typeof err.error === 'string') {
+              try {
+                const parsed = JSON.parse(err.error);
+                if (parsed.message) {
+                  errorMessage = parsed.message;
+                }
+              } catch {
+                errorMessage = err.error;
+              }
+            } else if (err.error.message) {
+              errorMessage = err.error.message;
+            }
           }
+      
           return throwError(() => new Error(errorMessage));
         })
       );
-  }
+  }  
 
   getPrescriptions(): Observable<IPrescription[]> {
     const headers = this.getAuthHeaders();

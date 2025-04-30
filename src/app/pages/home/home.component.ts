@@ -58,7 +58,7 @@ export class HomeComponent {
           this.router.navigate(['/uploads']);
         },
         error: (err) => {
-          this.toastr.error(err.error.message || 'Upload failed');
+          this.toastr.error(err.message || 'Upload failed');
         }
       });
     }

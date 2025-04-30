@@ -16,11 +16,11 @@ export class AuthService {
   }
 
   setToken(token: string): void {
-    localStorage.setItem('auth_token', token);
+    localStorage.setItem('token', token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('auth_token');
+    return localStorage.getItem('token');
   }
 
   isAuthenticated(): boolean {
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 }
